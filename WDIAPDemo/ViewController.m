@@ -7,8 +7,9 @@
 //
 
 #import "ViewController.h"
+#import "WDIAPManager.h"
 
-@interface ViewController ()
+@interface ViewController ()<WDIAPManagerDelegate>
 
 @end
 
@@ -17,6 +18,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    [WDIAPManager sharedManager].delegate = self;
+    //自己的商品id
+    [[WDIAPManager sharedManager] wd_requestProductWithId:@"com.wd.....xxxxx"];
 }
 
 
@@ -25,5 +29,13 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark WDIAPManagerDelegate
+- (void)wd_buyFailedWithErrorCode:(NSInteger)errorCode andError:(NSError *)error {
+    
+}
+
+- (void)wd_buySuccessWithResponseData:(id)data {
+    
+}
 
 @end
